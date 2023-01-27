@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reg.css">
+    <title>Document</title>
+</head>
+<body>
+  
+    <div class="wrapper">
+        <div class="title">
+          Registration Form
+        </div>
+        <form action="/next.html" method="post">
+        <div class="form">
+          <div class="inputfield">
+            <label>Code Number</label>
+            <input type="text" class="input">
+         </div>
+           <div class="inputfield">
+              <label>First Name</label>
+              <input type="text" class="input" required>
+           </div>  
+            <div class="inputfield">
+              <label>Middle Name</label>
+              <input type="text" class="input">
+           </div>  
+           <div class="inputfield">
+              <label>Surname</label>
+              <input type="text" class="input">
+           </div>  
+           <div class="inputfield">
+            <label>Father / Husband Name</label>
+            <input type="text" class="input" required>
+         </div>
+         <div class="inputfield">
+          <label>Nominee Name</label>
+          <input type="text" class="input" required>
+       </div>
+       <div class="inputfield">
+        <div class="custom_select">
+          <select>
+            <option value="">Type of relation</option>
+            <option value="Father">Father</option>
+            <option value="Husband">Husband</option>
+            <option value="Mother">Mother</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+     </div> 
+          <div class="inputfield">
+              <label>Age</label>
+              <input type="age" class="input" required>
+           </div> 
+           <div class="inputfield">
+               <label>Date Of Birth</label>
+               <input type="date" class="input" required>
+           </div>
+            <div class="inputfield">
+              <label>Gender</label>
+              <div class="custom_select">
+                <select>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="Transgender">Transgender</option>
+                </select>
+              </div>
+           </div> 
+            <div class="inputfield">
+              <label>Email Address</label>
+              <input type="text" class="input">
+           </div> 
+          <div class="inputfield">
+              <label>Phone Number</label>
+              <input type="text" class="input">
+           </div> 
+          <div class="inputfield">
+              <label>Address</label>
+              <input type="text" class="input" placeholder="Address Line 1" required>
+           </div> 
+           <div class="inputfield">
+            <input type="text" class="input" placeholder="Address Line 2" required>
+         </div> 
+         <div class="inputfield">
+          <label>District</label>
+          <input type="text" class="input"required>
+       </div> 
+       <div class="inputfield">
+        <label>State</label>
+        <input type="text" class="input"required>
+     </div> 
+          <div class="inputfield">
+              <label>Postal Code</label>
+              <input type="text" class="input">
+           </div> 
+          <div class="inputfield terms">
+              <label class="check">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <p>Agreed to terms and conditions</p>
+           </div> 
+          <div class="inputfield">
+            <input type="submit" value="Next" class="btn">
+          </div>
+        </div>
+      </form>
+    </div>
+</body>
+</html>

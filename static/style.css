@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(/image3.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    
+}
+
+.header a{
+    color: #fff;
+    font-size: medium;
+    text-decoration: none;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 4%;
+}
+nav a{
+    color: #fff;
+    font-size: x-large;
+}
+nav a span{
+    color: #f1f111;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+
+}
+.nav-links ul li {
+    display: inline-block;
+    margin: 5px 20px;
+}
+.nav-links ul li a{
+    font-size: 14px;
+    text-decoration: none;
+}
+.nav-links ul li a::after{
+   content: '';
+   display: block;
+   margin: auto;
+   height: 3px;
+   width: 0%;
+   background: rgb(126, 116, 116);
+   transition: .6s;
+}
+.nav-links ul li a:hover:after{
+    width: 100%;
+    
+ }
+
+.text-box{
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.text-box h1{
+    font-size: 45px;
+
+}
+.text-box p{
+    font-size: 14px;
+
+}
+.text-box a{
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    padding: 8px 40px;
+    border:  1px solid #fff;
+    margin-top: 10px;
+    transition: .6s;
+}
+.text-box a:hover{
+    background: rgb(27, 179, 22);
+    border: 1px solid #f1f111;
+}
+/* nav .fa-sharp{
+    display: none;
+    margin: 10px;
+}
+nav .fa-regular{
+    display: none;
+    margin: 10px;
+} */
+/* @media (max-width: 660px){
+.text-box h1{
+    font-size: 32px;
+    } */
+ /* .nav-links ul {
+    padding: 20px;
+    }
+    .nav-links ul li{
+        display: block;
+        }
+ .nav-links{
+        position: absolute;
+        height: 100vh;
+        width: 200px;
+        background:  rgba(4,9,30,0.7);
+        top: 0;
+        right: 0;
+        text-align: left;
+        z-index: 2;
+    } */
+    /* nav .fa-sharp{
+        display: block;
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    nav .fa-regular{
+        display: block;
+        color: black;
+        font-size: 20px;
+        cursor: pointer;
+    } */
+/* } */
