@@ -5,33 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/dashboard.css">
     <title>Document</title>
 </head>
 <body>
     <section class="header">
         <nav>
-            <div class="scrolling">
-                 <h4>Raja General Insurance</h4>
+            
                 
             </div>
             <div class="scroll">
-                <h3>Welcome Naveen</h3>
+                <h3>Welcome {{ fname }}</h3>
             </div>
             <div class="nav-links">
                
                 <ul>
-                    <li><a href="#" class="btn btn-primary">Logout</a></li>
+                    <li><a href="/logout" class="btn btn-primary">Logout</a></li>
                 </ul>
             </div>
             
         </nav>
         <div class="buttons">
-            <a href="/reg.html" class="ab">New Policy</a>
-            <a href="#" class="ac">Existing Policy</a>
+            <a href="/new_policy" class="ab">New Policy</a>
+            <a href="" class="ac">Existing Policy</a>
             <a href="#" class="ad">Help</a>
         </div>
+        <div class="scrolling">
+            <h4>Raja General Insurance</h4>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/reg.css">
+    <link rel="stylesheet" href="/static/reg.css">
     <title>Document</title>
 </head>
 <body>
@@ -13,35 +13,35 @@
         <div class="title">
           Registration Form
         </div>
-        <form action="/next.html" method="post">
+        <form action="/next_page" method="post">
         <div class="form">
           <div class="inputfield">
             <label>Code Number</label>
-            <input type="text" class="input">
+            <input type="text" class="input" value="{{ code }}" readonly>
          </div>
            <div class="inputfield">
               <label>First Name</label>
-              <input type="text" class="input" required>
+              <input type="text" class="input" name="fname" value="{{ fname }}"  readonly>
            </div>  
             <div class="inputfield">
               <label>Middle Name</label>
-              <input type="text" class="input">
+              <input type="text" class="input" name="middle">
            </div>  
            <div class="inputfield">
               <label>Surname</label>
-              <input type="text" class="input">
+              <input type="text" class="input" name="surname" required>
            </div>  
            <div class="inputfield">
             <label>Father / Husband Name</label>
-            <input type="text" class="input" required>
+            <input type="text" class="input" name="fhname" required>
          </div>
          <div class="inputfield">
           <label>Nominee Name</label>
-          <input type="text" class="input" required>
+          <input type="text" class="input" name="nominee" required>
        </div>
-       <div class="inputfield">
+       <div class="inputfield" style="margin-left: 142px;">
         <div class="custom_select">
-          <select>
+          <select name="relation">
             <option value="">Type of relation</option>
             <option value="Father">Father</option>
             <option value="Husband">Husband</option>
@@ -52,16 +52,16 @@
      </div> 
           <div class="inputfield">
               <label>Age</label>
-              <input type="age" class="input" required>
+              <input type="age" class="input" name="age" required>
            </div> 
            <div class="inputfield">
                <label>Date Of Birth</label>
-               <input type="date" class="input" required>
+               <input type="date" class="input" name="dob" required>
            </div>
             <div class="inputfield">
               <label>Gender</label>
               <div class="custom_select">
-                <select>
+                <select name="gender">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="Transgender">Transgender</option>
@@ -70,34 +70,34 @@
            </div> 
             <div class="inputfield">
               <label>Email Address</label>
-              <input type="text" class="input">
+              <input type="text" class="input" name="email" value="{{ email }}">
            </div> 
           <div class="inputfield">
               <label>Phone Number</label>
-              <input type="text" class="input">
+              <input type="text" class="input" name="phone" value="{{ phone }}">
            </div> 
           <div class="inputfield">
               <label>Address</label>
-              <input type="text" class="input" placeholder="Address Line 1" required>
+              <input type="text" class="input" placeholder="Address Line 1" name="address1" required>
            </div> 
-           <div class="inputfield">
-            <input type="text" class="input" placeholder="Address Line 2" required>
+           <div class="inputfield" style="margin-left: 142px;">
+            <input type="text" class="input" placeholder="Address Line 2" name="address2" required>
          </div> 
          <div class="inputfield">
           <label>District</label>
-          <input type="text" class="input"required>
+          <input type="text" class="input" name="dis" required>
        </div> 
        <div class="inputfield">
         <label>State</label>
-        <input type="text" class="input"required>
+        <input type="text" class="input" name="state" required>
      </div> 
           <div class="inputfield">
               <label>Postal Code</label>
-              <input type="text" class="input">
+              <input type="text" class="input" name="pin" required>
            </div> 
           <div class="inputfield terms">
               <label class="check">
-                <input type="checkbox">
+                <input type="checkbox" required>
                 <span class="checkmark"></span>
               </label>
               <p>Agreed to terms and conditions</p>

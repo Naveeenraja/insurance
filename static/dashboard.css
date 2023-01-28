@@ -49,9 +49,9 @@ body {
 	font-size: 3em;
 	text-align: center;
 	line-height: 50px;
-	color: rgb(13, 209, 62);
+	color: rgb(17, 44, 165);
 	transform: translateX(100%);
-	animation: scrolling 15s linear infinite;
+	animation: scrolling 25s linear infinite;
 }
 @keyframes scroll {
 	0% {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Input Selections</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <form>
+    <label>Select a category:</label>
+    <select id="category">
+      <option value="">Select</option>
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+    </select>
+    <br>
+    <label>Select a subcategory:</label>
+    <select id="subcategory">
+      <option value="">Select</option>
+      <option value="suboption1" class="option1">Suboption 1</option>
+      <option value="suboption2" class="option1">Suboption 2</option>
+      <option value="suboption3" class="option2">Suboption 3</option>
+      <option value="suboption4" class="option2">Suboption 4</option>
+    </select>
+  </form>
+  <script>
+    $(document).ready(function() {
+      $("#category").change(function() {
+        var selectedOption = $(this).val();
+        $("#subcategory option").hide();
+        $("#subcategory ." + selectedOption).show();
+      });
+    });
+  </script>
+</body>
+</html>
