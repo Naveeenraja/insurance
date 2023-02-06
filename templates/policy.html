@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Document</title>
+</head>
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="/static/style.css">
+      <link rel="stylesheet" href="/static/dashboard.css">
+      <title>Document</title>
+  </head>
+  <body>
+      
+      <section class="header">
+          <nav>
+              
+                  
+              </div>
+              <div class="scroll">
+                  <h3> Hii !! {{ fname }}</h3>
+              </div>
+              <div class="nav-links">
+                 
+                  <ul>
+                      <li><a href="/logout" class="btn btn-primary">Logout</a></li>
+                  </ul>
+              </div>
+              
+          </nav>
+          <button type="button" style="margin-top: 12%; margin-left:40%;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Click Here To Apply</button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"  id="exampleModalLabel"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/life" method="post">
+                      <div class="mb-3">
+                      <label for="policytype" class="col-form-label">Policy Type</label>
+                      <select name="policytype" style="width: 100%;
+                      height: 41px;">
+                          <option value="Life Insurance">Life Insurance</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="name" class="col-form-label">Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Enter your full name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="fhname" class="col-form-label">Father / Husband name</label>
+                      <input type="text" class="form-control" name="fhname" value="{{ fhname }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nominee" class="col-form-label">Nominee name</label>
+                      <input type="text" class="form-control" name="nominee" value="{{ nominee }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                      <label for="id type" class="col-form-label">Id Type</label>
+                      <select name="idtype" style="width: 100%;
+                      height: 41px;">
+                          <option value="Pan Card">Pan Card</option>
+                          <option value="Voter Id">Voter Id</option>
+                          <option value="Aadhar Card">Aadhar Card</option>
+                          <option value="Driving Licence">Driving Licence</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="id number" class="col-form-label">Id Number</label>
+                      <input type="text" class="form-control" name="idnumber">
+                    </div>
+                    <div class="mb-3">
+                      <label for="policy" class="col-form-label">Period</label>
+                      <br>
+                      <select id="category"  name="" style="width: 100%;
+                      height: 41px;">
+                          <option value="">Select</option>
+                          <option value="option1">3 Months</option>
+                          <option value="option2">1 month</option>
+                        </select>
+                    </div>
+                    <div>
+                      <label>Premium</label>
+                      <br>
+                      <select name="policy" id="subcategory" style="width: 100%; height: 41px;">
+                        <option value="">Select</option>
+                        <option value="Yearly Premium" class="option1">Yearly Premium</option>
+                        <option value="Monthly Premium" class="option2">Monthly Premium</option>
+                      </select>
+                    </div>
+                    <div>
+          <label>Amount</label>
+          <br>
+          <select id="subcategory" name="type" style="width: 100%;
+          height: 41px;">
+            <option value="">Select</option>
+            <option value="{{ msg }}" class="option1">{{ msg }}</option>
+            <option value="{{ msg1 }}" class="option1">{{ msg1 }}</option>
+            <option value="{{ msg2 }}" class="option1">{{ msg2 }}</option>
+            <option value="{{ msg3 }}" class="option1">{{ msg3 }}</option>
+            <option value="{{ msg4 }}" class="option2">{{ msg4 }}</option>
+            <option value="{{ msg5 }}" class="option2">{{ msg5 }}</option>
+            <option value="{{ msg6 }}" class="option2">{{ msg6 }}</option>
+            <option value="{{ msg7 }}" class="option2">{{ msg7 }}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label>Premium Period</label>
+          <br>
+          <select id="subcategory" name="type2" style="width: 100%;
+          height: 41px;">
+            <option value="">See Your Premium Period</option>
+            <option value="{{ threemonth }}" class="option1">{{ current_date }} - {{ threemonth }}</option>
+            <option value="{{ onemonth }}" class="option2">{{ current_date }} - {{ onemonth }}</option>
+          </select>
+      </div>
+      <br>
+                    <button type="submit" class="btn btn-primary">submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/07555236b8.js" crossorigin="anonymous"></script>
+  
+  </body>
+  </html>
+
+<!-- <button type="button" style="margin-top: 21%; margin-left:10%;" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">Vehicle Insurance</button>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Vehicle Insurance</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="col-form-label">Name</label>
+                <input type="text" class="form-control" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="fhname" class="col-form-label">Father / Husband name</label>
+                <input type="text" class="form-control" name="fhname">
+              </div>
+              <div class="mb-3">
+                <label for="nominee" class="col-form-label">Nominee name</label>
+                <input type="text" class="form-control" name="nominee">
+              </div>
+              <div class="mb-3">
+                <label for="id type" class="col-form-label">Id Type</label>
+                <select id="id type" name="idtype" style="width: 100%;
+                height: 41px;">
+                    <option value="">Pan Card</option>
+                    <option value="">Voter Id</option>
+                    <option value="">Aadhar Card</option>
+                    <option value="">Driving Licence</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="id number" class="col-form-label">Id Number</label>
+                <input type="text" class="form-control" name="idnumber">
+              </div>
+              <div class="mb-3">
+                <label for="policy" class="col-form-label">Premium</label>
+                <br>
+                <select id="category" name="policy" style="width: 100%;
+                height: 41px;">
+                    <option value="">Select</option>
+                    <option value="option1">Yearly Premium</option>
+                    <option value="option2">Monthly Premium</option>
+                  </select>
+              </div>
+              <div>
+    <label>Amount</label>
+    <br>
+    <select id="subcategory" name="type" style="width: 100%;
+    height: 41px;">
+      <option value="123">Select</option>
+      <option value="" class="option1"></option>
+      <option value="" class="option1"></option>
+      <option value="" class="option1"></option>
+      <option value="" class="option1"></option>
+      <option value="" class="option2"></option>
+      <option value="" class="option2"></option>
+      <option value="" class="option2"></option>
+      <option value="" class="option2"></option>
+    </select>
+</div>
+<br>
+<div>
+    <label>Premium Period</label>
+    <br>
+    <select id="subcategory" name="type2" style="width: 100%;
+    height: 41px;">
+      <option value="">See Your Premium Period</option>
+      <option value="Platinum Premium - Rs.2256/- per 3 months" class="option1">3 month</option>
+      <option value="Gold Premium - Rs.1856/- per 3 months" class="option2">one month</option>
+    </select>
+</div>
+<br>
+              <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" style="margin-top: 21%; margin-left:10%;" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@mdo">Health Insurance</button>
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Health Insurance</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="col-form-label">Name</label>
+                <input type="text" class="form-control" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="fhname" class="col-form-label">Father / Husband name</label>
+                <input type="text" class="form-control" name="fhname">
+              </div>
+              <div class="mb-3">
+                <label for="nominee" class="col-form-label">Nominee name</label>
+                <input type="text" class="form-control" name="nominee">
+              </div>
+              <div class="mb-3">
+                <label for="id type" class="col-form-label">Id Type</label>
+                <select id="id type" name="idtype" style="width: 100%;
+                height: 41px;">
+                    <option value="">Pan Card</option>
+                    <option value="">Voter Id</option>
+                    <option value="">Aadhar Card</option>
+                    <option value="">Driving Licence</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="id number" class="col-form-label">Id Number</label>
+                <input type="text" class="form-control" name="idnumber">
+              </div>
+              <div class="mb-3">
+                <label for="policy" class="col-form-label">Premium</label>
+                <br>
+                <select id="category" name="policy" style="width: 100%;
+                height: 41px;">
+                    <option value="">Select</option>
+                    <option value="option1">Yearly Premium</option>
+                    <option value="option2">Monthly Premium</option>
+                  </select>
+              </div>
+              <div>
+    <label>Amount</label>
+    <br>
+    <select id="subcategory" name="type" style="width: 100%;
+    height: 41px;">
+      <option value="">Select</option>
+      <option value="Platinum Premium - Rs.2256/- per 3 months" class="option1"></option>
+      <option value="Gold Premium - Rs.1856/- per 3 months" class="option1"></option>
+      <option value="Silver Premium - Rs.1056/- per 3 months" class="option1"></option>
+      <option value="Bronze Premium - Rs.956/- per 3 months" class="option1"></option>
+      <option value="Platinum Premium - Rs.1056/- per month" class="option2"></option>
+      <option value="Gold Premium - Rs.896/- per  month" class="option2"></option>
+      <option value="Silver Premium - Rs.446/- per month" class="option2"></option>
+      <option value="Bronze Premium - Rs.276/- per month" class="option2"></option>
+    </select>
+</div>
+<br>
+<div>
+    <label>Premium Period</label>
+    <br>
+    <select id="subcategory" name="type2" style="width: 100%;
+    height: 41px;">
+      <option value="">See Your Premium Period</option>
+      <option value="Platinum Premium - Rs.2256/- per 3 months" class="option1">3 month</option>
+      <option value="Gold Premium - Rs.1856/- per 3 months" class="option2">one month</option>
+    </select>
+</div>
+<br>
+              <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <script>
+        $(document).ready(function() {
+          $("#category").change(function() {
+            var selectedOption = $(this).val();
+            $("#subcategory option").hide();
+            $("#subcategory ." + selectedOption).show();
+          });
+        });
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
+</body>
+</html>

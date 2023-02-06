@@ -1,1 +1,1 @@
-if check_session():
+current_date
