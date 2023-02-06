@@ -186,12 +186,6 @@ def login():
 def gotodashboard():
     msg="Life"
     if check_session():
-        return render_template("dashboard.html", msg=msg, fname=session['firstname'])
-    
-
-@app.route("/existing")
-def existing():
-    if check_session():
         data=mcq_utils.read_json(file)
         for i in data['customers']:
             if i['Firstname'] == session['firstname']:
@@ -202,16 +196,28 @@ def existing():
                 session['Next Premium Date']=i['Next Premium Date']
                 session['Full Name']=i['Full Name']
                 session['nominee']=i['nominee']
-        return render_template("existing.html", data=data["customers"],premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'] )
-    
+        return render_template("dashboard.html", msg=msg,data=data["customers"],premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'] )
+
+@app.route("/gotovehicle")
+def gotovehicle():
+    msg2="Vehicle"
+    if check_session():
+        data=mcq_utils.read_json(file)
+        for i in data['customers']:
+            if i['Firstname'] == session['firstname']:
+                session['Policytype3']=i['Policy Type3']
+                session['Vehicle Insurance Policy Id']=i['Vehicle Insurance Policy Id']
+                session['Type of vehicle"']=i['Type of vehicle']
+                session['Amount3']=i['Amount3']
+                session['Next Premium Date3']=i['Next Premium Date3']
+                session['Full Name']=i['Full Name']
+                session['Vehicle number']=i['Vehicle number']
+                session['DL / RC Num']=i['DL / RC Num']
+        return render_template("dashboard2.html",msg2=msg2, fname=session['firstname'],premiumdate=session['Next Premium Date3']  ,amount= session['Amount3'],vehicle= session['Type of vehicle"'], policyholdername= session['Full Name'],  policytype=session['Policytype3'] ,policyid=session["Vehicle Insurance Policy Id"] ,number=session['Vehicle number'], dl= session['DL / RC Num'])
 
 @app.route("/gotohealth")
 def gotohealth():
-    msg2="Health"
-    return render_template("dashboardd.html",msg2=msg2, fname=session['firstname'] )
-
-@app.route("/existing2")
-def existing2():
+    msg1="Health"
     if check_session():
         data=mcq_utils.read_json(file)
         for i in data['customers']:
@@ -223,18 +229,7 @@ def existing2():
                 session['Next Premium Date2']=i['Next Premium Date2']
                 session['Full Name']=i['Full Name']
                 session['nominee']=i['nominee']
-        return render_template("existing2.html",data=data["customers"],premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'])
-
-
-@app.route("/gotovehicle")
-def gotovehicle():
-    msg1="Vehicle"
-    if check_session():
-        return render_template("dashboarddd.html",msg1=msg1,fname=session['firstname'] )
-
-@app.route("/existing3")
-def existing3():
-    return render_template("existing3.html")
+        return render_template("dashboard3.html",msg1=msg1,premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'] )
 
 
 @app.route("/new_policy")
@@ -298,14 +293,14 @@ def save():
     onemonth= current_date + timedelta(days=30)
     twomonth = current_date + timedelta(days=60)
     sixmonth = current_date + timedelta(days=180)
-    msg="Platinum Premuim - 2256/- per 3 month "
-    msg1="Gold Premium - Rs.1856/- per 3 months"
-    msg2="Silver Premium - Rs.1056/- per 3 months"
-    msg3="Bronze Premium - Rs.956/- per 3 months"
-    msg4="Platinum Premium - Rs.1056/- per month"
-    msg5="Gold Premium - Rs.896/- per  month"
-    msg6="Silver Premium - Rs.446/- per month"
-    msg7="Bronze Premium - Rs.276/- per month"
+    msg="Platinum Premuim -Rs. $2256/- per 3 month "
+    msg1="Gold Premium - Rs.$1856/- per 3 months"
+    msg2="Silver Premium - Rs.$1056/- per 3 months"
+    msg3="Bronze Premium - Rs.$956/- per 3 months"
+    msg4="Platinum Premium - Rs.$1056/- per month"
+    msg5="Gold Premium - Rs.$896/- per  month"
+    msg6="Silver Premium - Rs.$446/- per month"
+    msg7="Bronze Premium - Rs.$276/- per month"
     return render_template("policy.html", current_date=current_date, threemonth=threemonth ,onemonth=onemonth, fname=session['firstname'], nominee=session['nominee'] , fhname=session['Father / husband name'], msg=msg, msg1=msg1, msg2=msg2, msg3=msg3, msg4=msg4, msg5=msg5, msg6=msg6, msg7=msg7) 
 
 @app.route("/life" , methods=["GET" , "POST"])  
