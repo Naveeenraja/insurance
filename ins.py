@@ -102,8 +102,7 @@ def reg():
             "Amount2" : "",
             "Next Premium Date2" : "",
             "Policy Type3" : "",
-            "Id Type3" : "",
-            "Id Number3" : "",
+            "Premium3" : "",
             "Type of vehicle" : "",
             "Vehicle number" : "",
             "DL / RC Num" : "",
@@ -134,8 +133,7 @@ def login():
                 session["lastname"]=i["Lastname"]
                 session["phone"]=i["phone"]
                 session["code_number"]=i["code_number"]
-                session["id_number1"]=i["Life Insurance Policy Id"]
-                session["Age"]=i["Age"]
+                session["Life Insurance Policy Id"]=i["Life Insurance Policy Id"]
                 session['Middlename']=i['Middlename']
                 session['Surname']= i['Surname']
                 session['Father / husband name']=i['Father / Husbandname']
@@ -167,8 +165,7 @@ def login():
                 session['Next Premium Date2']=i['Next Premium Date2']
                 session['Health Insurance Policy Id']=i['Health Insurance Policy Id']
                 session['Policytype3']=i['Policy Type3']
-                session['IDtype3']=i['Id Type3']
-                session['Id Number3']=i['Id Number3']
+                session['Premium3']=i['Premium3']
                 session['Type of vehicle']=i['Type of vehicle']
                 session['Amount3']=i['Amount3']
                 session['Vehicle number']=i['Vehicle number']
@@ -231,11 +228,20 @@ def gotohealth():
                 session['nominee']=i['nominee']
         return render_template("dashboard3.html",msg1=msg1,premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'] )
 
+@app.route("/new_policy2")
+def new_policy2():
+    if check_session():
+        return render_template("reg2.html",fname= session["firstname"], code=session["code_number"], email=session["email"], phone=session["phone"],mname=session['Middlename'],sname=session['Surname'], fhname=session['Father / husband name'],age=session["Age"],dob= session['Date of Birth'],gender=session['Gender'],add2=session['Address2'],add=session['Address1'], dis=session['District'], state= session['State'], pin=session['Pincode'], rel=session['Type of Relation'])
+
+@app.route("/new_policy3" , methods=["POST" , "GET"])
+def new_policy3():
+    if check_session():
+        return render_template("reg3.html", fname= session["firstname"], code=session["code_number"], email=session["email"], phone=session["phone"],mname=session['Middlename'],sname=session['Surname'], fhname=session['Father / husband name'],age=session["Age"],dob= session['Date of Birth'],gender=session['Gender'], nominee=session['nominee'],add2=session['Address2'],add=session['Address1'], dis=session['District'], state= session['State'], pin=session['Pincode'], rel=session['Type of Relation'])
 
 @app.route("/new_policy")
 def new_policy():
     if check_session():
-        return render_template("reg.html", fname= session["firstname"], code=session["code_number"], email=session["email"], phone=session["phone"])
+        return render_template("reg.html", fname= session["firstname"], code=session["code_number"], email=session["email"], phone=session["phone"],mname=session['Middlename'],sname=session['Surname'], fhname=session['Father / husband name'],age=session["Age"],dob= session['Date of Birth'],gender=session['Gender'], nominee=session['nominee'],add2=session['Address2'],add=session['Address1'], dis=session['District'], state= session['State'], pin=session['Pincode'], rel=session['Type of Relation'])
 
 @app.route("/next_page" , methods=["GET" , "POST"]) 
 def next_page():
@@ -291,8 +297,6 @@ def save():
     current_date=date.today()
     threemonth= current_date + timedelta(days=90)
     onemonth= current_date + timedelta(days=30)
-    twomonth = current_date + timedelta(days=60)
-    sixmonth = current_date + timedelta(days=180)
     msg="Platinum Premuim -Rs. $2256/- per 3 month "
     msg1="Gold Premium - Rs.$1856/- per 3 months"
     msg2="Silver Premium - Rs.$1056/- per 3 months"
@@ -303,8 +307,27 @@ def save():
     msg7="Bronze Premium - Rs.$276/- per month"
     return render_template("policy.html", current_date=current_date, threemonth=threemonth ,onemonth=onemonth, fname=session['firstname'], nominee=session['nominee'] , fhname=session['Father / husband name'], msg=msg, msg1=msg1, msg2=msg2, msg3=msg3, msg4=msg4, msg5=msg5, msg6=msg6, msg7=msg7) 
 
+@app.route("/next2" ,  methods=["GET" , "POST"])
+def next2():
+    current_date=date.today()
+    sixmonth = current_date + timedelta(days=180)
+    twomonth = current_date + timedelta(days=60)
+    return render_template("policy2.html",six=sixmonth,two = twomonth, current_date=current_date, fname=session['firstname'])
+
+@app.route("/next3" ,  methods=["GET" , "POST"])
+def next3():
+    current_date=date.today()
+    sixmonth = current_date + timedelta(days=180)
+    threemonth= current_date + timedelta(days=90)
+    msg="Rs. $6745.50"
+    msg1="Rs. $8745.50"
+    msg2="Rs. $3450.25"
+    msg3="Rs. $2100.25"
+    return render_template("policyvehi.html",fname=session['firstname'],six=sixmonth,three = threemonth, current_date=current_date,msg=msg,msg1=msg1,msg2=msg2,msg3=msg3)
+
 @app.route("/life" , methods=["GET" , "POST"])  
 def life_insurance():
+    msg="Life"
     if check_session():
         data=mcq_utils.read_json(file)
         length=len(data["customers"])
@@ -320,9 +343,7 @@ def life_insurance():
                         i['Premium']=request.form["policy"]
                         i['Amount']=request.form["type"]
                         i['Full Name']=request.form["name"]
-                        i['Health Insurance Policy Id']=length * 2131125 * 2
                         i['Life Insurance Policy Id']= length * 324567 * 3
-                        i['Vehicle Insurance Policy Id']=length * 456346 * 4
                         i['Next Premium Date']=request.form["type2"]
                         session['Policytype']=i['Policy Type']
                         session['IDtype']=i['Id Type']
@@ -331,10 +352,79 @@ def life_insurance():
                         session['Amount']=i['Amount']
                         session['Next Premium Date']=i['Next Premium Date']
                         session['Full Name']=i['Full Name']
+                        session['Life Insurance Policy Id']=i['Life Insurance Policy Id']
                 with open('customers.json', 'w') as json_file:
                     json.dump(data, json_file, indent=4)
-                return render_template("dashboard.html", premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["id_number1"] ,nominee=session['nominee'])
+                return render_template("dashboard.html", msg=msg, premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'])
+
+
+@app.route("/health" , methods=["GET" , "POST"])  
+def health_insurance():
+    msg1="Health"
+    if check_session():
+        data=mcq_utils.read_json(file)
+        length=len(data["customers"])
+        if 'user' in session:
+            if request.method == 'POST':
+                with open('customers.json') as json_file:
+                    data = json.load(json_file)
+                for i in data['customers']:
+                    if i['Firstname'] == session['firstname']:
+                        i['Policy Type2']=request.form["policytype"]
+                        i['Id Type2']=request.form["idtype"]
+                        i['Id Number2']=request.form["idnumber"]
+                        i['Premium2']=request.form["policy"]
+                        i['Amount2']=request.form["type"]
+                        i['Full Name']=request.form["name"]
+                        i['Health Insurance Policy Id']=length * 2131125 * 2
+                        i['Next Premium Date2']=request.form["type2"]
+                        session['Policytype2']=i['Policy Type2']
+                        session['IDtype2']=i['Id Type2']
+                        session['Id Number2']=i['Id Number2']
+                        session['Premium2']=i['Premium2']
+                        session['Amount2']=i['Amount2']
+                        session['Next Premium Date2']=i['Next Premium Date2']
+                        session['Full Name']=i['Full Name']
+                        session['Health Insurance Policy Id']=i['Health Insurance Policy Id']
+                with open('customers.json', 'w') as json_file:
+                    json.dump(data, json_file, indent=4)
+                return render_template("dashboard3.html", msg1=msg1, premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'])
+
+@app.route("/vehicle" , methods=["GET" , "POST"])  
+def vehicle_insurance():
+    msg1="Vehicle"
+    if check_session():
+        data=mcq_utils.read_json(file)
+        length=len(data["customers"])
+        if 'user' in session:
+            if request.method == 'POST':
+                with open('customers.json') as json_file:
+                    data = json.load(json_file)
+                for i in data['customers']:
+                    if i['Firstname'] == session['firstname']:
+                        i['Policy Type3']=request.form["policytype"]
+                        i['Type of vehicle']=request.form["vehicletype"]
+                        i['Vehicle number']=request.form["number"]
+                        i['DL / RC Num']=request.form["dl"]
+                        i['Premium3']=request.form["policy"]
+                        i['Amount3']=request.form["type"]
+                        i['Full Name']=request.form["name"]
+                        i['Vehicle Insurance Policy Id']=length * 456346 * 4
+                        i['Next Premium Date3']=request.form["type2"]
+                        session['Policytype3']=i['Policy Type3']
+                        session['Type of vehicle']=i['Type of vehicle']
+                        session['Vehicle number']=i['Vehicle number']
+                        session['Premium3']=i['Premium3']
+                        session['Amount3']=i['Amount3']
+                        session['Next Premium Date3']=i['Next Premium Date3']
+                        session['Full Name']=i['Full Name']
+                        session['DL / RC Num']= i['DL / RC Num']
+                        session['Vehicle Insurance Policy Id']= i['Vehicle Insurance Policy Id']
+                with open('customers.json', 'w') as json_file:
+                    json.dump(data, json_file, indent=4)
+                return render_template("dashboard2.html",dl=session['DL / RC Num'], msg1=msg1,number=session['Vehicle number'] ,vehicle=session['Type of vehicle'],premiumdate=session['Next Premium Date3'] , fname=session['firstname'] ,amount= session['Amount3'],premium= session['Premium3'], policyholdername= session['Full Name'],  policytype=session['Policytype3'] ,policyid=session["Vehicle Insurance Policy Id"] )
         
+
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",debug=True)  
