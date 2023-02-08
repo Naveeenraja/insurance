@@ -4,7 +4,7 @@ import data.mcqutil as mcq_utils
 import json
 from datetime import date, timedelta
 file ="customers.json"
-file1 = "policy.json"
+
 
 app=Flask(__name__)
 app.config["SECRET_KEY"]="somekey"
@@ -441,6 +441,7 @@ def next3():
 @app.route("/life" , methods=["GET" , "POST"])  
 def life_insurance():
     msg="Life"
+    ms="Your Life Insurance registration has been completed successfully!"
     if check_session():
         data=mcq_utils.read_json(file)
         length=len(data["customers"])
@@ -467,12 +468,13 @@ def life_insurance():
                         session['Life Insurance Policy Id']=i['Life Insurance Policy Id']
                 with open('customers.json', 'w') as json_file:
                     json.dump(data, json_file, indent=4)
-                return render_template("dashboard.html", msg=msg, premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'])
+                return render_template("dashboard.html", msg=msg,ms=ms, premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'])
 
 
 @app.route("/health" , methods=["GET" , "POST"])  
 def health_insurance():
     msg1="Health"
+    ms="Your Health Insurance registration has been completed successfully!"
     if check_session():
         data=mcq_utils.read_json(file)
         length=len(data["customers"])
@@ -499,11 +501,12 @@ def health_insurance():
                         session['Health Insurance Policy Id']=i['Health Insurance Policy Id']
                 with open('customers.json', 'w') as json_file:
                     json.dump(data, json_file, indent=4)
-                return render_template("dashboard3.html", msg1=msg1, premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'])
+                return render_template("dashboard3.html",ms=ms, msg1=msg1, premiumdate=session['Next Premium Date2'] , fname=session['firstname'] ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'])
 
 @app.route("/vehicle" , methods=["GET" , "POST"])  
 def vehicle_insurance():
     msg2="Vehicle"
+    ms="your Vehicle insurance registration has been completed successfully!"
     if check_session():
         data=mcq_utils.read_json(file)
         length=len(data["customers"])
@@ -533,7 +536,7 @@ def vehicle_insurance():
                         session['Vehicle Insurance Policy Id']= i['Vehicle Insurance Policy Id']
                 with open('customers.json', 'w') as json_file:
                     json.dump(data, json_file, indent=4)
-                return render_template("dashboard2.html",dl=session['DL / RC Num'], msg2=msg2,number=session['Vehicle number'] ,vehicle=session['Type of vehicle'],premiumdate=session['Next Premium Date3'] , fname=session['firstname'] ,amount= session['Amount3'],premium= session['Premium3'], policyholdername= session['Full Name'],  policytype=session['Policytype3'] ,policyid=session["Vehicle Insurance Policy Id"] )
+                return render_template("dashboard2.html",dl=session['DL / RC Num'],ms=ms, msg2=msg2,number=session['Vehicle number'] ,vehicle=session['Type of vehicle'],premiumdate=session['Next Premium Date3'] , fname=session['firstname'] ,amount= session['Amount3'],premium= session['Premium3'], policyholdername= session['Full Name'],  policytype=session['Policytype3'] ,policyid=session["Vehicle Insurance Policy Id"] )
         
 
 
