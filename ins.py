@@ -53,11 +53,20 @@ def about_page():
 def reg():
     data = mcq_utils.read_json(file)
     if request.method=="POST":
+        fname=request.form["firstName"]
+        email= request.form["email"]
+        phone= request.form["phoneNumber"]
+        if fname in session:
+            return render_template("register.html",msg="your name already registered!!!!!")
+        if email in session:
+            return render_template("register.html", msg1="your email already registered")
+        if phone in session:
+            return render_template("register.html", msg2="your phone number already registered")
+        session[fname]=False
+        session[email]=False
+        session[phone]=False
         length=len(data["customers"])
         code=length + 100984 
-        Policy_Id1=length + 21231 * 2
-        Policy_Id2=length + 11231 * 2
-        Policy_Id3=length + 41231 * 2
         fname=request.form["firstName"]
         lname=request.form["lastname"]
         email= request.form["email"]
@@ -246,7 +255,30 @@ def new_policy():
 @app.route("/next_page" , methods=["GET" , "POST"]) 
 def next_page():
     if 'user' in session:
+        data = mcq_utils.read_json(file)
         if request.method == 'POST':
+            for i in data['customers']:
+               i['Age']=request.form['age']
+               i['Father / Husbandname']=request.form["fhname"]
+               i['Date of Birth']=request.form["dob"]
+               i['Gender'] = request.form['gender']
+               i['Address1']=request.form["address1"]
+               i['Address2']=request.form["address2"]
+               i['District']=request.form["dis"]
+               if  i['Age'] in session:
+                   if i['Father / Husbandname'] in session:
+                       if i['Date of Birth'] in session:
+                           if i['Gender'] in session:
+                               if i['Address1'] in session:
+                                   if i['District'] in session:
+                                      return render_template("dashboard.html",msg="Life",premiumdate=session['Next Premium Date']  ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'],fname= session["firstname"],mesg="your informations already registered!!!!!")
+                 
+            session[i['Age']]=False
+            session [i['Father / Husbandname']]=False
+            session[i['Date of Birth']]=False
+            session[i['Gender']]=False
+            session[i['Address1']]=False
+            session[i['District']]=False
             with open('customers.json') as json_file:
                 data = json.load(json_file)
             for i in data['customers']:
@@ -290,7 +322,7 @@ def edit():
 
 @app.route("/exit" , methods=["GET" , "POST"])   
 def exit():
-     return render_template("dashboard.html" ,premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["id_number1"] ,nominee=session['nominee'])
+     return render_template("dashboard.html" ,premiumdate=session['Next Premium Date'] , fname=session['firstname'] ,amount= session['Amount'],premium= session['Premium'], policyholdername= session['Full Name'],  policytype=session['Policytype'] ,policyid=session["Life Insurance Policy Id"] ,nominee=session['nominee'])
 
 @app.route("/save" , methods=["GET" , "POST"])   
 def save():
@@ -309,10 +341,34 @@ def save():
 
 @app.route("/next2" ,  methods=["GET" , "POST"])
 def next2():
-    current_date=date.today()
-    sixmonth = current_date + timedelta(days=180)
-    twomonth = current_date + timedelta(days=60)
-    return render_template("policy2.html",six=sixmonth,two = twomonth, current_date=current_date, fname=session['firstname'])
+    data = mcq_utils.read_json(file)
+        if request.method == 'POST':
+            for i in data['customers']:
+               i['Age']=request.form['age']
+               i['Father / Husbandname']=request.form["fhname"]
+               i['Date of Birth']=request.form["dob"]
+               i['Gender'] = request.form['gender']
+               i['Address1']=request.form["address1"]
+               i['Address2']=request.form["address2"]
+               i['District']=request.form["dis"]
+               if  i['Age'] in session:
+                   if i['Father / Husbandname'] in session:
+                       if i['Date of Birth'] in session:
+                           if i['Gender'] in session:
+                               if i['Address1'] in session:
+                                   if i['District'] in session:
+                                      return render_template("dashboard2.html",msg="Health",premiumdate=session['Next Premium Date2']  ,amount= session['Amount2'],premium= session['Premium2'], policyholdername= session['Full Name'],  policytype=session['Policytype2'] ,policyid=session["Health Insurance Policy Id"] ,nominee=session['nominee'],fname= session["firstname"],mesg="your informations already registered!!!!!")
+                 
+            session[i['Age']]=False
+            session [i['Father / Husbandname']]=False
+            session[i['Date of Birth']]=False
+            session[i['Gender']]=False
+            session[i['Address1']]=False
+            session[i['District']]=False
+            current_date=date.today()
+            sixmonth = current_date + timedelta(days=180)
+            twomonth = current_date + timedelta(days=60)
+            return render_template("policy2.html",six=sixmonth,two = twomonth, current_date=current_date, fname=session['firstname'])
 
 @app.route("/next3" ,  methods=["GET" , "POST"])
 def next3():
